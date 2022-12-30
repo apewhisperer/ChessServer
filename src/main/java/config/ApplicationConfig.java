@@ -1,5 +1,6 @@
 package config;
 
+import model.Board;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,5 +19,10 @@ public class ApplicationConfig {
         ProcessingService processingService = new ProcessingService();
         processingService.startTopology(applicationId, bootstrapServers, inputTopic, outputTopic);
         return processingService;
+    }
+
+    @Bean
+    Board board() {
+        return new Board();
     }
 }
