@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'groovy'
+}
+
+group = 'org.chess'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation libs.spock, libs.spring.spock, libs.groovy, libs.jupiter, libs.spring.boot.starter.test, libs.spring.kafka.test
+    implementation libs.spring.boot.starter, libs.kafka, libs.kafka.streams, libs.spring.kafka
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed'
+    }
+}

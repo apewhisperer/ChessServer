@@ -1,0 +1,9 @@
+spring:
+  kafka:
+    config:
+      application-id: kafka-project
+      bootstrap-servers: 93.180.177.75:9092
+      input-topic: input-topic
+      output-topic: output-topic
+      group-id: group-id
+      auto-offset: earliest
