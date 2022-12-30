@@ -22,7 +22,10 @@ public class ApplicationConfig {
     }
 
     @Bean
-    Board board() {
-        return new Board();
+    Board board(
+            @Value("${spring.defaults.board.start-index}") int startIndex,
+            @Value("${spring.defaults.board.end-index}") int endIndex
+    ) {
+        return new Board(startIndex, endIndex);
     }
 }

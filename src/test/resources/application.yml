@@ -7,3 +7,7 @@ spring:
       output-topic: output-topic
       group-id: group-id
       auto-offset: earliest
+  defaults:
+    board:
+      start-index: 0
+      end-index: 7
