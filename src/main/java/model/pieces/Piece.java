@@ -1,9 +1,12 @@
-package model;
+package model.pieces;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import model.*;
+import model.enums.Color;
+import model.enums.PieceValue;
 import utils.FindPossibleTakes;
 
 import java.util.ArrayList;

@@ -1,6 +1,9 @@
-package model;
+package model.pieces;
 
 import lombok.AllArgsConstructor;
+import model.*;
+import model.enums.Color;
+import model.enums.PieceValue;
 import utils.StreamUtils;
 
 import java.util.List;

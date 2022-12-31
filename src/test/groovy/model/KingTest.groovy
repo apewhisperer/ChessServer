@@ -1,5 +1,8 @@
 package model
 
+import model.enums.Color
+import model.enums.PieceValue
+import model.pieces.King
 import spock.lang.Specification
 
 class KingTest extends Specification {
