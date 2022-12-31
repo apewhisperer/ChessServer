@@ -23,7 +23,7 @@ public class King extends Piece {
     public List<Field> findPossibleTakes(Board board) {
         List<Field> possibleTakes = board.getBoardAsList();
         return possibleTakes.stream().filter(field -> (StreamUtils.isInRange(field.getCoords(), getCurrentPos(), RANGE)
-                        && field.getPiece().getColor() != this.getColor()))
+                        && (field.getPiece() == null || (field.getPiece().getColor() != this.getColor()))))
                 .toList();
     }
 }
