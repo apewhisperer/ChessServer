@@ -1,17 +1,15 @@
 package utils;
 
 import model.Board;
-import org.springframework.beans.factory.annotation.Value;
 
 public class BoardFactory {
 
-    @Value("${spring.defaults.board.start-index}")
-    private static int startIndex;
-    @Value("${spring.defaults.board.end-index}")
-    private static int endIndex;
+    private final static int START_INDEX = 0;
+    private final static int END_INDEX = 7;
     public static Board getBoard(String testPreset){
-        if ("emptyBoard".equals(testPreset)){
-            return new Board(startIndex, endIndex);
+        Board board = new Board(START_INDEX, END_INDEX);
+        if (testPreset == "emptyBoard"){
+            return board;
         }
         return null;
     }

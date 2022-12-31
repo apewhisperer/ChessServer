@@ -9,7 +9,7 @@ class BoardTest extends Specification {
 
     def 'should insert King at #description'() {
         given:
-        Board board = new Board(0,7)
+        Board board = BoardFactory.getBoard("emptyBoard")
 
         when:
         board.upsertPiece(PieceValue.KING, Color.WHITE, coordinates)
