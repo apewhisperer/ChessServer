@@ -33,7 +33,14 @@ public class Board {
         this.boardAsList.stream()
                 .filter(field -> field.getCoords().equals(coords))
                 .findFirst()
-                .ifPresentOrElse(v -> v.setPiece(newPiece),
+                .ifPresentOrElse(field -> field.setPiece(newPiece),
                         () -> ChessServerLogger.info(coords.toString() + " field not found"));
+    }
+
+    public Field findField(Coordinates coords) {
+        return this.boardAsList.stream()
+                .filter(field -> field.getCoords().equals(coords))
+                .findFirst()
+                .orElse(null);
     }
 }

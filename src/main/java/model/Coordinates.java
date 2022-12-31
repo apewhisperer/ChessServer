@@ -1,14 +1,15 @@
 package model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Coordinates {
 
     private int x;
     private int y;
+
 }
