@@ -15,8 +15,10 @@ import java.util.List;
 @Setter
 public class Knight extends Piece {
 
-    public Knight(Coordinates currentPos, Color color, PieceValue pieceValue, boolean isActive) {
-        super(currentPos, color, pieceValue, isActive);
+    private static final PieceValue VALUE = PieceValue.KNIGHT;
+
+    public Knight(Coordinates currentPos, Color color, boolean isActive) {
+        super(currentPos, color, VALUE, isActive);
     }
 
     @Override

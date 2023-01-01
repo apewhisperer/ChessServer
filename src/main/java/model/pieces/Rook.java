@@ -15,8 +15,10 @@ import java.util.List;
 @Setter
 public class Rook extends Piece {
 
-    public Rook(Coordinates currentPos, Color color, PieceValue pieceValue, boolean isActive) {
-        super(currentPos, color, pieceValue, isActive);
+    private static final PieceValue VALUE = PieceValue.ROOK;
+
+    public Rook(Coordinates currentPos, Color color, boolean isActive) {
+        super(currentPos, color, VALUE, isActive);
     }
 
     @Override

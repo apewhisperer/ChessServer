@@ -15,8 +15,10 @@ import java.util.List;
 @Setter
 public class Queen extends Piece {
 
-    public Queen(Coordinates currentPos, Color color, PieceValue pieceValue, boolean isActive) {
-        super(currentPos, color, pieceValue, isActive);
+    private static final PieceValue VALUE = PieceValue.QUEEN;
+
+    public Queen(Coordinates currentPos, Color color, boolean isActive) {
+        super(currentPos, color, VALUE, isActive);
     }
 
     @Override
