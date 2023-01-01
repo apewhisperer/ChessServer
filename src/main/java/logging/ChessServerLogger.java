@@ -1,15 +1,23 @@
 package logging;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.ToString;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
 public class ChessServerLogger {
 
+    @ToString.Exclude
+    static final Logger LOGGER = LoggerFactory.getLogger(ChessServerLogger.class);
+
     public static void info(String msg) {
-        log.info(msg);
+        LOGGER.info(msg);
     }
 
     public static void debug(String msg) {
-        log.debug(msg);
+        LOGGER.debug(msg);
+    }
+
+    public static void error(String msg) {
+        LOGGER.error(msg);
     }
 }

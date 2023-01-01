@@ -3,7 +3,7 @@ package model;
 import logging.ChessServerLogger;
 import lombok.Getter;
 import model.enums.Color;
-import model.enums.PieceValue;
+import model.pieces.Pawn;
 import model.pieces.Piece;
 import utils.PieceFactory;
 
@@ -16,10 +16,21 @@ public class Board {
     private final List<Field> BOARD_AS_LIST;
 
     public Board(int startIndex, int endIndex) {
-        this.BOARD_AS_LIST = createNewBoard(startIndex, endIndex);
+        this.BOARD_AS_LIST = prepareEmptyBoard(startIndex, endIndex);
     }
 
-    public List<Field> createNewBoard(int startIndex, int endIndex) {
+    public List<Field> prepareStartBoard(int startIndex, int endIndex) {
+        final int[] count = {0};
+        return prepareEmptyBoard(startIndex, endIndex).stream()
+                .skip(8)
+                .limit(8)
+                .map(field -> new Field(
+                        new Pawn(new Coordinates(1, count[0]), Color.BLACK, true),
+                        new Coordinates(1, count[0]++)))
+                .collect(Collectors.toList());
+    }
+
+    public List<Field> prepareEmptyBoard(int startIndex, int endIndex) {
         return IntStream.rangeClosed(startIndex, endIndex)
                 .boxed()
                 .flatMap(i -> IntStream.rangeClosed(startIndex, endIndex)
@@ -27,13 +38,13 @@ public class Board {
                 .toList();
     }
 
-    public void upsertPiece(PieceValue pieceValue, Color color, Coordinates coords) {
-        Piece newPiece = PieceFactory.getPiece(pieceValue, color, coords);
+    public void upsertPiece(Color color, Coordinates coords) {
+        Piece newPiece = PieceFactory.getPiece(color, coords);
         this.BOARD_AS_LIST.stream()
                 .filter(field -> field.getCoords().equals(coords))
                 .findFirst()
                 .ifPresentOrElse(field -> field.setPiece(newPiece),
-                        () -> ChessServerLogger.info(coords.toString() + " field not found"));
+                        () -> ChessServerLogger.error(coords.toString() + " field not found"));
     }
 
     public Field findField(Coordinates coords) {

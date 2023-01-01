@@ -17,9 +17,10 @@ public class King extends Piece {
 
     private static final int RANGE = 1;
     private boolean hasAlreadyCastled = false;
+    private static final PieceValue VALUE = PieceValue.KING;
 
-    public King(Coordinates currentPos, Color color, PieceValue value, boolean isActive) {
-        super(currentPos, color, value, isActive);
+    public King(Coordinates currentPos, Color color, boolean isActive) {
+        super(currentPos, color, VALUE, isActive);
     }
 
     @Override
