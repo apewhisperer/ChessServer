@@ -27,7 +27,7 @@ public class Board {
                 .map(field -> new Field(
                         new Pawn(new Coordinates(1, count[0]), Color.BLACK, true),
                         new Coordinates(1, count[0]++)))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Field> prepareEmptyBoard(int startIndex, int endIndex) {
