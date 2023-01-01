@@ -1,6 +1,6 @@
 package utils;
 
-import model.*;
+import model.Coordinates;
 import model.enums.Color;
 import model.enums.PieceValue;
 import model.pieces.King;

@@ -4,9 +4,11 @@ import model.enums.Color
 import model.enums.PieceValue
 import model.pieces.King
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class KingTest extends Specification {
 
+    @Unroll
     def 'should find all possible moves when kings #description'() {
         when:
         def possibleTakes = new King(coordinates, Color.WHITE, PieceValue.KING, true).findPossibleTakes(board)

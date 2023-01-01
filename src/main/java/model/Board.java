@@ -14,10 +14,10 @@ import java.util.stream.IntStream;
 @Getter
 public class Board {
 
-    private List<Field> boardAsList;
+    private final List<Field> BOARD_AS_LIST;
 
     public Board(int startIndex, int endIndex) {
-        this.boardAsList = createNewBoard(startIndex, endIndex);
+        this.BOARD_AS_LIST = createNewBoard(startIndex, endIndex);
     }
 
     public List<Field> createNewBoard(int startIndex, int endIndex) {
@@ -30,7 +30,7 @@ public class Board {
 
     public void upsertPiece(PieceValue pieceValue, Color color, Coordinates coords) {
         Piece newPiece = PieceFactory.getPiece(pieceValue, color, coords);
-        this.boardAsList.stream()
+        this.BOARD_AS_LIST.stream()
                 .filter(field -> field.getCoords().equals(coords))
                 .findFirst()
                 .ifPresentOrElse(field -> field.setPiece(newPiece),
@@ -38,7 +38,7 @@ public class Board {
     }
 
     public Field findField(Coordinates coords) {
-        return this.boardAsList.stream()
+        return this.BOARD_AS_LIST.stream()
                 .filter(field -> field.getCoords().equals(coords))
                 .findFirst()
                 .orElse(null);
