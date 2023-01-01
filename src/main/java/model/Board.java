@@ -8,7 +8,6 @@ import model.pieces.Piece;
 import utils.PieceFactory;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Getter
@@ -25,7 +24,7 @@ public class Board {
                 .boxed()
                 .flatMap(i -> IntStream.rangeClosed(startIndex, endIndex)
                         .mapToObj(j -> new Field(null, new Coordinates(i, j))))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public void upsertPiece(PieceValue pieceValue, Color color, Coordinates coords) {
@@ -38,6 +37,14 @@ public class Board {
     }
 
     public Field findField(Coordinates coords) {
+        return this.BOARD_AS_LIST.stream()
+                .filter(field -> field.getCoords().equals(coords))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public Field findField(int x, int y) {
+        Coordinates coords = new Coordinates(x, y);
         return this.BOARD_AS_LIST.stream()
                 .filter(field -> field.getCoords().equals(coords))
                 .findFirst()

@@ -1,6 +1,7 @@
 package model.pieces;
 
-import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import model.Board;
 import model.Coordinates;
 import model.Field;
@@ -10,10 +11,12 @@ import utils.StreamUtils;
 
 import java.util.List;
 
-@AllArgsConstructor
+@Getter
+@Setter
 public class King extends Piece {
 
     private static final int RANGE = 1;
+    private boolean hasAlreadyCastled = false;
 
     public King(Coordinates currentPos, Color color, PieceValue value, boolean isActive) {
         super(currentPos, color, value, isActive);
