@@ -23,7 +23,7 @@ public class Board {
     public List<Field> createNewBoard(int startIndex, int endIndex) {
         return IntStream.rangeClosed(startIndex, endIndex)
                 .boxed()
-                .flatMap(i -> IntStream.range(startIndex, endIndex)
+                .flatMap(i -> IntStream.rangeClosed(startIndex, endIndex)
                         .mapToObj(j -> new Field(null, new Coordinates(i, j))))
                 .collect(Collectors.toList());
     }
