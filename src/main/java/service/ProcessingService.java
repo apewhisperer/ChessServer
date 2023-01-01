@@ -21,7 +21,7 @@ public class ProcessingService {
     public Topology buildTopology(String inputTopic, String outputTopic) {
         StreamsBuilder streamsBuilder = createStreamsBuilder();
         streamsBuilder.stream(inputTopic)
-                .peek((k, v) -> ChessServerLogger.debug("$k ::: $v"))
+                .peek((k, v) -> ChessServerLogger.debug("$k ::: $v")) //TODO: this causes npe in test
                 .to(outputTopic);
         return streamsBuilder.build();
     }
