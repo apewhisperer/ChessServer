@@ -1,6 +1,7 @@
 package model
 
 import model.enums.Color
+import model.enums.PieceValue
 import spock.lang.Specification
 import spock.lang.Unroll
 import utils.BoardFactory
@@ -13,7 +14,7 @@ class BoardTest extends Specification {
         Board board = BoardFactory.getBoard("emptyBoard")
 
         when:
-        board.upsertPiece(Color.WHITE, coordinates)
+        board.upsertPiece(Color.WHITE, coordinates, PieceValue.KING)
 
         then:
         board.findField(coordinates).getPiece() != null
