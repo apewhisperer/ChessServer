@@ -3,6 +3,7 @@ package model;
 import logging.ChessServerLogger;
 import lombok.Getter;
 import model.enums.Color;
+import model.enums.PieceValue;
 import model.pieces.Pawn;
 import model.pieces.Piece;
 import utils.PieceFactory;
@@ -38,8 +39,8 @@ public class Board {
                 .toList();
     }
 
-    public void upsertPiece(Color color, Coordinates coords) {
-        Piece newPiece = PieceFactory.getPiece(color, coords);
+    public void upsertPiece(Color color, Coordinates coords, PieceValue value) {
+        Piece newPiece = PieceFactory.getPiece(color, coords, value);
         this.BOARD_AS_LIST.stream()
                 .filter(field -> field.getCoords().equals(coords))
                 .findFirst()
