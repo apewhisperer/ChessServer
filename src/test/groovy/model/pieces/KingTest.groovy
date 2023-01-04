@@ -18,7 +18,7 @@ class KingTest extends Specification {
 
         where:
         coordinates           | board           | expected | description
-        new Coordinates(1, 1) | new Board(0, 7) | 8 | 'coordinates are 1,1'
+        new Coordinates(1, 1) | new Board(0, 7) | 8        | 'coordinates are 1,1'
         new Coordinates(0, 0) | new Board(0, 7) | 3        | 'coordinates are 0,0'
         new Coordinates(0, 1) | new Board(0, 7) | 5        | 'coordinates are 0,1'
     }

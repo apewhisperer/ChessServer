@@ -4,7 +4,7 @@ import model.enums.Color
 import model.enums.PieceValue
 import spock.lang.Specification
 import spock.lang.Unroll
-import utils.BoardFactory
+import utils.factory.BoardFactory
 
 class BoardTest extends Specification {
 
@@ -33,5 +33,14 @@ class BoardTest extends Specification {
         where:
         startIndex | endIndex | fieldNumber
         0          | 7        | 64
+    }
+
+    def 'generator test'() {
+        when:
+        def board = BoardFactory.generateBoard("King,w,0,0;pawn,w,0,1")
+
+        then:
+        board.findField(new Coordinates(0,0)).getPiece() != null
+        board.findField(new Coordinates(0,1)).getPiece() != null
     }
 }

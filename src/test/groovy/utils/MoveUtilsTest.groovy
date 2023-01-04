@@ -1,23 +1,59 @@
 package utils
 
-
 import model.Coordinates
-import model.enums.Color
 import spock.lang.Specification
+import utils.factory.BoardFactory
 
 class MoveUtilsTest extends Specification {
 
-    def 'Should find all available fields for piece placed at #description'() {
+    def 'Should find all vertically available fields for piece placed at #description'() {
+        given:
+        def availableFields = new ArrayList()
+
         when:
-        def availableFields = MoveUtils.findVerticallyAvailableFields(board, coordinates, Color.WHITE)
+        MoveUtils.findVerticallyAvailableFields(board, coordinates, availableFields)
 
         then:
         availableFields.size() == expected
 
         where:
-        coordinates           | board                                        | expected | description
-        new Coordinates(0, 0) | BoardFactory.getBoard("emptyBoard")          | 7        | '0,0 coordinates'
-        new Coordinates(1, 1) | BoardFactory.getBoard("emptyBoard")          | 7        | '1,1 coordinates'
-        new Coordinates(0, 1) | BoardFactory.getBoard("KingAtTopLeftCorner") | 6        | '0,1 coordinates'
+        coordinates           | board                                      | expected | description
+        new Coordinates(0, 0) | BoardFactory.getBoard("emptyBoard")        | 7        | '0,0 coordinates'
+        new Coordinates(1, 1) | BoardFactory.getBoard("emptyBoard")        | 7        | '1,1 coordinates'
+        new Coordinates(0, 1) | BoardFactory.getBoard("KingTopLeftCorner") | 6        | '0,1 coordinates'
+    }
+
+    def 'Should find all horizontally available fields for piece placed at #description'() {
+        given:
+        def availableFields = new ArrayList()
+
+        when:
+        MoveUtils.findHorizontallyAvailableFields(board, coordinates, availableFields)
+
+        then:
+        availableFields.size() == expected
+
+        where:
+        coordinates           | board                                       | expected | description
+        new Coordinates(0, 0) | BoardFactory.getBoard("emptyBoard")         | 7        | '0,0 coordinates'
+        new Coordinates(1, 1) | BoardFactory.getBoard("emptyBoard")         | 7        | '1,1 coordinates'
+        new Coordinates(1, 0) | BoardFactory.getBoard("KingBotRightCorner") | 6        | '1,0 coordinates'
+    }
+
+    def 'Should find all diagonally available fields for piece placed at #description'() {
+        given:
+        def availableFields = new ArrayList()
+
+        when:
+        MoveUtils.findDiagonallyAvailableFields(board, coordinates, availableFields)
+
+        then:
+        availableFields.size() == expected
+
+        where:
+        coordinates           | board                                  | expected | description
+        new Coordinates(0, 0) | BoardFactory.getBoard("emptyBoard")    | 7        | '0,0 coordinates'
+        new Coordinates(1, 1) | BoardFactory.getBoard("emptyBoard")    | 9        | '1,1 coordinates'
+        new Coordinates(2, 2) | BoardFactory.getBoard("KingBotMiddle") | 10       | '2,2 coordinates'
     }
 }
