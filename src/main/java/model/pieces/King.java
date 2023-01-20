@@ -26,7 +26,8 @@ public class King extends Piece {
     @Override
     public List<Field> findPossibleTakes(Board board) {
         List<Field> possibleTakes = board.getBOARD_AS_LIST();
-        return possibleTakes.stream().filter(field -> (StreamUtils.isInRange(field.getCoords(), getCurrentPos(), RANGE)
+        return possibleTakes.stream()
+                .filter(field -> (StreamUtils.isInRange(field.getCoords(), getCurrentPos(), RANGE)
                         && (field.getPiece() == null || (field.getPiece().getColor() != this.getColor()))))
                 .toList();
     }

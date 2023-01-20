@@ -33,7 +33,8 @@ public class BoardFactory {
             board.upsertPiece(Color.WHITE, new Coordinates(4, 0), PieceValue.KING);
             return board;
         }
-        return null;
+        board = generateBoard(testPreset);
+        return board;
     }
 
     public static Board getBoard(List<Piece> piecesToPlace) {
@@ -44,7 +45,7 @@ public class BoardFactory {
         return board;
     }
 
-    public static Board generateBoard(String piecesToPlace) {
+    private static Board generateBoard(String piecesToPlace) {
         Board board = new Board(START_INDEX, END_INDEX);
         piecesToPlace = piecesToPlace.toLowerCase();
         String[] piecesSplit = piecesToPlace.split(";");

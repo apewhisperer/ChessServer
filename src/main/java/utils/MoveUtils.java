@@ -35,6 +35,11 @@ public class MoveUtils {
         checkNeighboringField(board, coords, fields, upperLeft);
     }
 
+    public static boolean isFieldInKnightRange(Coordinates source, Coordinates target) {
+        return (Math.abs(source.getX() - target.getX()) == 2 && Math.abs(source.getY() - target.getY()) == 1)
+                || (Math.abs(source.getX() - target.getX()) == 1 && Math.abs(source.getY() - target.getY()) == 2);
+    }
+
     private static void checkNeighboringField(Board board, Coordinates coords, List<Field> fields, Coordinates direction) {
         int x = coords.getX();
         int y = coords.getY();

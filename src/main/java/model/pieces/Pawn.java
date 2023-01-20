@@ -24,6 +24,7 @@ public class Pawn extends Piece {
 
     @Override
     public List<Field> findPossibleTakes(Board board) {
+        //TODO: implement method body
         return board.getBOARD_AS_LIST();
     }
 }

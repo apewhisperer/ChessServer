@@ -7,6 +7,7 @@ import model.Coordinates;
 import model.Field;
 import model.enums.Color;
 import model.enums.PieceValue;
+import utils.MoveUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,10 @@ public class Queen extends Piece {
 
     @Override
     public List<Field> findPossibleTakes(Board board) {
-        //TODO: implement method body
-        return new ArrayList<>();
+        List<Field> availableFields = new ArrayList<>();
+        MoveUtils.findHorizontallyAvailableFields(board, this.getCurrentPos(), availableFields);
+        MoveUtils.findVerticallyAvailableFields(board, this.getCurrentPos(), availableFields);
+        MoveUtils.findDiagonallyAvailableFields(board, this.getCurrentPos(), availableFields);
+        return availableFields;
     }
 }

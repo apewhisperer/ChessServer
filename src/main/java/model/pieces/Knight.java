@@ -7,6 +7,8 @@ import model.Coordinates;
 import model.Field;
 import model.enums.Color;
 import model.enums.PieceValue;
+import utils.MoveUtils;
+import utils.StreamUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,10 @@ public class Knight extends Piece {
 
     @Override
     public List<Field> findPossibleTakes(Board board) {
-        //TODO: implement Method body
-        return new ArrayList<>();
+        List<Field> possibleTakes = board.getBOARD_AS_LIST();
+        return possibleTakes.stream()
+                .filter(field -> (MoveUtils.isFieldInKnightRange(field.getCoords(), getCurrentPos())
+                        && (field.getPiece() == null || (field.getPiece().getColor() != this.getColor()))))
+                .toList();
     }
 }
